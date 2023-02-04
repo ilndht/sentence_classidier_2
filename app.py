@@ -17,9 +17,12 @@ def inference(model_inputs:dict) -> dict:
     prompt = model_inputs.get('prompt', None)
     if prompt == None:
         return {'message': "No prompt provided"}
-    
+    int_pred = []
+
     # Run the model
     preds= model(prompt)
-    result = dict(zip(prompt, preds))
+    for a in preds : 
+        int_pred.append(int(a))
+    result = dict(zip(prompt, int_pred))
     # Return the results as a dictionary
     return result
